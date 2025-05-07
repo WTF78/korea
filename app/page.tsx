@@ -77,7 +77,7 @@ export default function Home() {
 
                         <div className="relative z-10 flex items-center justify-center h-full">
                             <div onClick={scrollOnePage} className="relative -mt-10 hover:scale-110 transition-all cursor-pointer heartbeat">
-                                <Image src="/Logo3.png" alt="Charm" width="320" height="320" className="logo-dark"/>
+                                <Image src={`${base}/Logo3.png`} alt="Charm" width="320" height="320" className="logo-dark"/>
                             </div>
                         </div>
                     </section>
@@ -202,31 +202,27 @@ export default function Home() {
                                 <div className="flex justify-center items-center pb-5">
                                     <div className="carousel rounded-box w-64">
                                         <div id="slide_1" className="carousel-item w-full">
-                                            <Image
+                                            <img
                                                 src={image[0]}
-                                                className="object-cover"
-                                                fill
+                                                className="w-full"
                                                 alt="1" />
                                         </div>
                                         <div id="slide_2" className="carousel-item w-full">
-                                            <Image
+                                            <img
                                                 src={image[1]}
-                                                className="object-cover"
-                                                fill
+                                                className="w-full"
                                                 alt="2" />
                                         </div>
                                         <div id="slide_3" className="carousel-item w-full">
-                                            <Image
+                                            <img
                                                 src={image[2]}
-                                                className="object-cover"
-                                                fill
+                                                className="w-full"
                                                 alt="3" />
                                         </div>
                                         <div id="slide_4" className="carousel-item w-full">
-                                            <Image
+                                            <img
                                                 src={image[3]}
-                                                className="object-cover"
-                                                fill
+                                                className="w-full"
                                                 alt="4" />
                                         </div>
                                     </div>
