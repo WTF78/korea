@@ -12,9 +12,9 @@ const BackgroundMap: React.FC = () => {
     const [showPlane, setShowPlane] = useState(false);
     const [coordinates, setCoordinates] = useState({ x1: 0, y1: 0, x2: 0, y2: 0, offset: 0 , rotate: 103});
 
-    const marker = base+'/marker.png';
-    const planeIcon = base+'/plane.png';
-    const mapImage = base+'/Terr_3.png';
+    const marker = `${base}/marker.png`;
+    const planeIcon = `${base}/plane.png`;
+    const mapImage = `${base}/Terr_3.png`;
 
     useEffect(() => {
         const updateCoordinates = () => {

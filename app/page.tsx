@@ -5,11 +5,11 @@ import React, {useState,  useRef, useEffect} from "react";
 import Image from "next/image";
 import BackgroundVideo from "@/app/BackgroundVideo";
 import BackgroundMap from "@/app/BackgroundMap";
-// import nextConfig from "../next.config";
+import nextConfig from "../next.config";
 
 
 export default function Home() {
-    // const path = nextConfig.basePath;
+    const base = nextConfig.basePath;
 
     const scrollOnePage = () => {
         window.scrollBy({
@@ -60,10 +60,10 @@ export default function Home() {
     }, []);
 
     const image = [
-        '/korea_2.jpg',
-        '/korea_4.jpg',
-        '/korea_1.jpg',
-        '/korea_3.jpg',
+        `${base}/korea_2.jpg`,
+        `${base}/korea_4.jpg`,
+        `${base}/korea_1.jpg`,
+        `${base}/korea_3.jpg`,
     ]
 
     return (
@@ -202,27 +202,31 @@ export default function Home() {
                                 <div className="flex justify-center items-center pb-5">
                                     <div className="carousel rounded-box w-64">
                                         <div id="slide_1" className="carousel-item w-full">
-                                            <img
+                                            <Image
                                                 src={image[0]}
-                                                className="w-full"
+                                                className="object-cover"
+                                                fill
                                                 alt="1" />
                                         </div>
                                         <div id="slide_2" className="carousel-item w-full">
-                                            <img
+                                            <Image
                                                 src={image[1]}
-                                                className="w-full"
+                                                className="object-cover"
+                                                fill
                                                 alt="2" />
                                         </div>
                                         <div id="slide_3" className="carousel-item w-full">
-                                            <img
+                                            <Image
                                                 src={image[2]}
-                                                className="w-full"
+                                                className="object-cover"
+                                                fill
                                                 alt="3" />
                                         </div>
                                         <div id="slide_4" className="carousel-item w-full">
-                                            <img
+                                            <Image
                                                 src={image[3]}
-                                                className="w-full"
+                                                className="object-cover"
+                                                fill
                                                 alt="4" />
                                         </div>
                                     </div>
