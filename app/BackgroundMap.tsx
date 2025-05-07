@@ -3,16 +3,18 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import React from "react";
-import marker from '../public/marker.png';
-import planeIcon from '../public/plane.png';
-import mapImage from '../public/Terr_3.png';
+import nextConfig from "../next.config";
 
 const BackgroundMap: React.FC = () => {
+    const base = nextConfig.basePath;
     const [scrollY, setScrollY] = useState(0);
     const [maxScroll, setMaxScroll] = useState(1000);
     const [showPlane, setShowPlane] = useState(false);
     const [coordinates, setCoordinates] = useState({ x1: 0, y1: 0, x2: 0, y2: 0, offset: 0 , rotate: 103});
 
+    const marker = base+'/marker.png';
+    const planeIcon = base+'/plane.png';
+    const mapImage = base+'/Terr_3.png';
 
     useEffect(() => {
         const updateCoordinates = () => {
