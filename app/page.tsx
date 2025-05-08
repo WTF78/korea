@@ -9,7 +9,7 @@ import nextConfig from "../next.config";
 
 
 export default function Home() {
-    const base = nextConfig.basePath;
+    const base = nextConfig.basePath ?? '';
 
     const scrollOnePage = () => {
         window.scrollBy({
@@ -68,9 +68,11 @@ export default function Home() {
 
     return (
         <div>
+
             <main>
                 <div className="relative">
                     <section id="home" className="relative w-full h-screen">
+
                         <div ref={topRef}>
                             <BackgroundVideo/>
                         </div>
@@ -162,10 +164,6 @@ export default function Home() {
                                                     <li>The employer strictly monitors compliance with these
                                                         rules, which ensures safety and comfort for all employees.
                                                     </li>
-                                                    {/*<li>Your job is*/}
-                                                    {/*    solely about communication and creating a pleasant atmosphere, and no*/}
-                                                    {/*    additional services are required or welcomed.*/}
-                                                    {/*</li>*/}
                                                     <li>This approach allows girls
                                                         to work in comfortable and safe conditions, without fear for their
                                                         reputation and safety.
@@ -200,30 +198,69 @@ export default function Home() {
                             <section id="feedback">
                                 <h1>Feedback</h1>
                                 <div className="flex justify-center items-center pb-5">
-                                    <div className="carousel rounded-box w-64">
-                                        <div id="slide_1" className="carousel-item w-full">
-                                            <img
-                                                src={image[0]}
-                                                className="w-full"
-                                                alt="1" />
+                                    <div className="carousel rounded-box w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-lg">
+                                        <div id="slide1" className="carousel-item relative w-full">
+                                            <img src={image[0]} className="w-full object-cover" alt="1" />
+                                            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                                                <a onClick={(e) => {
+                                                    e.preventDefault();
+                                                    document.getElementById('slide4')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                                    }}
+                                                   className="btn btn-circle">❮</a>
+                                                <a onClick={(e) => {
+                                                    e.preventDefault();
+                                                    document.getElementById('slide2')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                                }}
+                                                   className="btn btn-circle">❯</a>
+                                            </div>
                                         </div>
-                                        <div id="slide_2" className="carousel-item w-full">
-                                            <img
-                                                src={image[1]}
-                                                className="w-full"
-                                                alt="2" />
+
+                                        <div id="slide2" className="carousel-item relative w-full">
+                                            <img src={image[1]} className="w-full" alt="2" />
+                                            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                                                <a onClick={(e) => {
+                                                    e.preventDefault();
+                                                    document.getElementById('slide1')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                                }}
+                                                   className="btn btn-circle">❮</a>
+                                                <a onClick={(e) => {
+                                                    e.preventDefault();
+                                                    document.getElementById('slide3')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                                }}
+                                                   className="btn btn-circle">❯</a>
+                                            </div>
                                         </div>
-                                        <div id="slide_3" className="carousel-item w-full">
-                                            <img
-                                                src={image[2]}
-                                                className="w-full"
-                                                alt="3" />
+
+                                        <div id="slide3" className="carousel-item relative w-full">
+                                            <img src={image[2]} className="w-full" alt="3" />
+                                            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                                                <a onClick={(e) => {
+                                                    e.preventDefault();
+                                                    document.getElementById('slide2')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                                }}
+                                                   className="btn btn-circle">❮</a>
+                                                <a onClick={(e) => {
+                                                    e.preventDefault();
+                                                    document.getElementById('slide4')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                                }}
+                                                   className="btn btn-circle">❯</a>
+                                            </div>
                                         </div>
-                                        <div id="slide_4" className="carousel-item w-full">
-                                            <img
-                                                src={image[3]}
-                                                className="w-full"
-                                                alt="4" />
+
+                                        <div id="slide4" className="carousel-item relative w-full">
+                                            <img src={image[3]} className="w-full" alt="4" />
+                                            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                                                <a onClick={(e) => {
+                                                    e.preventDefault();
+                                                    document.getElementById('slide3')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                                }}
+                                                   className="btn btn-circle">❮</a>
+                                                <a onClick={(e) => {
+                                                    e.preventDefault();
+                                                    document.getElementById('slide1')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                                }}
+                                                   className="btn btn-circle">❯</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

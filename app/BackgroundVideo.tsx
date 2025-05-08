@@ -3,10 +3,10 @@ import nextConfig from "../next.config";
 
 
 const BackgroundVideo: React.FC = () => {
-    const base = nextConfig.basePath
+    const base = nextConfig.basePath ?? ''
 
     return (
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-2">
             <video
                 autoPlay
                 muted

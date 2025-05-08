@@ -6,7 +6,7 @@ import React from "react";
 import nextConfig from "../next.config";
 
 const BackgroundMap: React.FC = () => {
-    const base = nextConfig.basePath;
+    const base = nextConfig.basePath ?? '';
     const [scrollY, setScrollY] = useState(0);
     const [maxScroll, setMaxScroll] = useState(1000);
     const [showPlane, setShowPlane] = useState(false);
@@ -23,30 +23,30 @@ const BackgroundMap: React.FC = () => {
 
             if (width < 640) {
                 setCoordinates({
-                    x1: width * 0.15,
-                    y1: height * 0.2,
-                    x2: width * 0.85,
-                    y2: height * 0.4,
-                    offset: height / 1.5,
-                    rotate: 140
+                    x1: width * 0.1,
+                    y1: height * 0.1,
+                    x2: width * 0.54,
+                    y2: height * 0.57,
+                    offset: height / 1.4,
+                    rotate: 155
                 });
-            } else if (width >= 640 && width < 1024) {
+            } else if (width >= 640 && width <= 1024) {
                 setCoordinates({
                     x1: width * 0.1,
-                    y1: height * 0.25,
-                    x2: width * 0.7,
-                    y2: height * 0.55,
-                    offset: height / 1.3,
+                    y1: height * 0.1,
+                    x2: width * 0.68,
+                    y2: height * 0.53,
+                    offset: height / 1.4,
                     rotate: 130
                 });
             } else {
                 setCoordinates({
                     x1: width * 0.1,
-                    y1: height * 0.25,
-                    x2: width * 0.88,
-                    y2: height * 0.55,
-                    offset: height / 1.3,
-                    rotate: 130
+                    y1: height * 0.1,
+                    x2: width * 0.86,
+                    y2: height * 0.52,
+                    offset: height / 1.5,
+                    rotate: 103
                 });
             }
         };
@@ -69,7 +69,7 @@ const BackgroundMap: React.FC = () => {
         };
     }, []);
 
-    const { x1, y1, x2, y2, offset } = coordinates;
+    const { x1, y1, x2, y2, offset, rotate } = coordinates;
 
     const progress = Math.min(Math.max(scrollY - offset, 0) / maxScroll, 1);
 
@@ -84,54 +84,59 @@ const BackgroundMap: React.FC = () => {
     return (
         <div className="relative w-full">
 
-            <div className="fixed top-0 left-0 w-full h-full -z-10"
+            <div className="fixed top-0 left-0 w-full h-full z-[-10]"
             style={{
                 filter: "blur(1px)",
-                opacity: 0.37
-            }}>
+                opacity: 0.42,
+                }}>
                 <Image src={mapImage}
                        alt="Map Background"
                        layout="fill"
                        objectFit="cover"
-                       objectPosition="bottom right "/>
+                       objectPosition="bottom right"
+                style={{
+                    transform: "scale(1.1)",
+                }}/>
             </div>
 
             {showPlane && (
-                <div className="fixed transition-transform duration-300"
+                <div className="fixed transition-transform duration-300 z-[-5]"
                  style={{
-                    left: `${planeX}px`,
-                    top: `${planeY}px`,
+                    left: `${planeX+20}px`,
+                    top: `${planeY+20}px`,
                     transform: "translate(-50%, -50%)",
                     width: '60px',
                     opacity: 0.7,
-                    filter: x1+10 < planeX && !(y2 === planeY)? "drop-shadow(-10px 20px 0px rgba(0, 0, 0, 0.4))": "none",
-                    transition: "transform 2.5s linear, filter 1.8s ease-in-out, left 0.7s linear, top 0.7s linear",
+                    filter: x1+10 < planeX && !(y2-5 <= planeY)? "drop-shadow(-10px 20px 0px rgba(0, 0, 0, 0.4))": "none",
+                    transition: "transform 1.5s linear, filter 1.8s ease-in-out, left 0.7s linear, top 0.7s linear",
                 }}>
-                <Image className="rotate-103" src={planeIcon} alt="Plane" width={60} height={60} />
+                <Image style={{ transform: `rotate(${rotate}deg)` }} src={planeIcon}
+                       alt="Plane" width={60} height={60} />
                 </div>)
             }
 
             {showPlane && (
                 <div>
-                    <div className="fixed top-0 left-0 w-full h-full pointer-events-none -z-9">
-                        <Image src={marker} alt="Marker" width={50} height={50}
-                               style={{
-                                   position: "absolute",
-                                   left: `${x1-20}px`,
-                                   top: `${y1-45}px`
-                               }} className="sm:hidden" />
-                    </div>
-                    {y2 === planeY && (
-                        <div className="fixed top-0 left-0 w-full h-full pointer-events-none -z-9">
+                    {/*<div className="fixed top-0 left-0 w-full h-full pointer-events-none hidden lg:block">*/}
+                    {/*    <Image src={marker} alt="Marker" width={50} height={50}*/}
+                    {/*           style={{*/}
+                    {/*               position: "absolute",*/}
+                    {/*               left: `${x1}px`,*/}
+                    {/*               top: `${y1}px`*/}
+                    {/*           }} className="" />*/}
+                    {/*</div>*/}
+                    {y2-50 <= planeY && (
+                        <div className="fixed top-0 left-0 w-full h-full pointer-events-none">
                             <Image src={marker} alt="Marker" width={50} height={50}
                                    style={{
                                        position: "absolute",
-                                       left: `${x2-27}px`,
-                                       top: `${y2-45}px`
+                                       left: `${x2}px`,
+                                       top: `${y2}px`
                                    }}/>
                         </div>
                     )}
-                </div>)}
+                </div>)
+            }
         </div>
     );
 }
