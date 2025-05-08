@@ -25,7 +25,7 @@ const BackgroundMap: React.FC = () => {
                 setCoordinates({
                     x1: width * 0.1,
                     y1: height * 0.1,
-                    x2: width * 0.54,
+                    x2: width * 0.53,
                     y2: height * 0.57,
                     offset: height / 1.4,
                     rotate: 155
@@ -34,15 +34,15 @@ const BackgroundMap: React.FC = () => {
                 setCoordinates({
                     x1: width * 0.1,
                     y1: height * 0.1,
-                    x2: width * 0.68,
-                    y2: height * 0.53,
+                    x2: width * 0.65,
+                    y2: height * 0.52,
                     offset: height / 1.4,
-                    rotate: 130
+                    rotate: 137
                 });
             } else {
                 setCoordinates({
-                    x1: width * 0.1,
-                    y1: height * 0.1,
+                    x1: width * 0.01,
+                    y1: height * 0.25,
                     x2: width * 0.86,
                     y2: height * 0.52,
                     offset: height / 1.5,
@@ -93,10 +93,7 @@ const BackgroundMap: React.FC = () => {
                        alt="Map Background"
                        layout="fill"
                        objectFit="cover"
-                       objectPosition="bottom right"
-                style={{
-                    transform: "scale(1.1)",
-                }}/>
+                       objectPosition="bottom right"/>
             </div>
 
             {showPlane && (
@@ -107,7 +104,7 @@ const BackgroundMap: React.FC = () => {
                     transform: "translate(-50%, -50%)",
                     width: '60px',
                     opacity: 0.7,
-                    filter: x1+10 < planeX && !(y2-5 <= planeY)? "drop-shadow(-10px 20px 0px rgba(0, 0, 0, 0.4))": "none",
+                    filter: x1+10 < planeX && !(y2-1 <= planeY)? "drop-shadow(-10px 20px 0px rgba(0, 0, 0, 0.4))": "none",
                     transition: "transform 1.5s linear, filter 1.8s ease-in-out, left 0.7s linear, top 0.7s linear",
                 }}>
                 <Image style={{ transform: `rotate(${rotate}deg)` }} src={planeIcon}
