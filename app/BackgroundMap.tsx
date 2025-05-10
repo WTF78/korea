@@ -50,21 +50,24 @@ const BackgroundMap: React.FC = () => {
                 });
             }
         };
+        updateCoordinates();
 
         const handleScroll = () => setScrollY(window.scrollY);
 
-        updateCoordinates();
         const updateMaxScroll = () => {
             const totalHeight = document.documentElement.scrollHeight;
             setMaxScroll(totalHeight - 2 * window.innerHeight);
         };
-
+        const handleResize = () => {
+            updateCoordinates();
+            updateMaxScroll();
+        };
         updateMaxScroll();
-        window.addEventListener("resize", updateMaxScroll);
+        window.addEventListener("resize", handleResize);
         window.addEventListener("scroll", handleScroll);
 
         return () => {
-            window.removeEventListener("resize", updateMaxScroll);
+            window.removeEventListener("resize", handleResize);
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
